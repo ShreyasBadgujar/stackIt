@@ -16,7 +16,7 @@ const AskScreen = ({ formData, handleInputChange }) => (
               type="text"
               value={formData.title}
               onChange={(e) => handleInputChange('title', e.target.value)}
-              className="w-full bg-gray-700 text-white px-4 py-3 rounded-lg outline-none border border-gray-600 focus:border-blue-500"
+              className="w-full bg-gray-700 text-white px-4 py-3 rounded-lg outline-none border border-gray-600 focus:border-[#6421FF]"
               placeholder="What's your programming question? Be specific."
             />
           </div>
@@ -25,7 +25,7 @@ const AskScreen = ({ formData, handleInputChange }) => (
             <label className="block text-white text-sm font-medium mb-2">
               Description
             </label>
-            <div className="bg-gray-700 rounded-lg border border-gray-600 focus-within:border-blue-500">
+            <div className="bg-gray-700 rounded-lg border border-gray-600 focus-within:border-[#6421FF]">
               <div className="border-b border-gray-600 p-3 flex gap-3 text-sm">
                 <button type="button" className="text-gray-400 hover:text-white font-bold">B</button>
                 <button type="button" className="text-gray-400 hover:text-white italic">I</button>
@@ -52,7 +52,7 @@ const AskScreen = ({ formData, handleInputChange }) => (
               type="text"
               value={formData.tags}
               onChange={(e) => handleInputChange('tags', e.target.value)}
-              className="w-full bg-gray-700 text-white px-4 py-3 rounded-lg outline-none border border-gray-600 focus:border-blue-500"
+              className="w-full bg-gray-700 text-white px-4 py-3 rounded-lg outline-none border border-gray-600 focus:border-[#6421FF]"
               placeholder="javascript, react, css (separate with commas)"
             />
             <p className="text-gray-400 text-xs mt-1">
@@ -63,7 +63,7 @@ const AskScreen = ({ formData, handleInputChange }) => (
           <div className="flex flex-col sm:flex-row gap-3">
             <button 
               type="submit"
-              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg transition-colors font-medium"
+              className="flex-1 bg-[#6421FF] hover:bg-[#541ACC] text-white py-3 px-6 rounded-lg transition-colors font-medium"
             >
               Post Question
             </button>
