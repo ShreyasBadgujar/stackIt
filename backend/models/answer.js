@@ -7,6 +7,7 @@ const AnswerSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   description: String,
   votes: { type: Number, default: 0 },
+  voters: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   accepted: { type: Boolean, default: false }
 }, { timestamps: true });
 
