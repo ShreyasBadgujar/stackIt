@@ -66,6 +66,10 @@ import AskScreen from './components/AskScreen';
 import LoginPage from './components/LoginPage';
 import QuestionDetail from './components/QuestionDetail';
 
+
+import ProtectedRoute from './components/ProtectedRoute';
+import MyQuestions from './components/MyQuestions';
+
 const App = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -102,8 +106,12 @@ const App = () => {
                 />
               }
             />
+
             <Route path="/login" element={<LoginPage />} />
             <Route path="/question/:id" element={<QuestionDetail />} />
+            <Route path="/answers" element={<ProtectedRoute><AnswersScreen /></ProtectedRoute>} />
+            <Route path="/my-questions" element={<ProtectedRoute><MyQuestions /></ProtectedRoute>} />
+            <Route path="/login" element={<LoginPage/>}/>
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
