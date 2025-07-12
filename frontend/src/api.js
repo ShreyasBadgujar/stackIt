@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { Backend_URL } from './config'
 
 const API = axios.create({
   baseURL: Backend_URL || 'http://localhost:5000',

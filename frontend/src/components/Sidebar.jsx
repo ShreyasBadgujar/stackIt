@@ -16,6 +16,7 @@ import {
   Palette,
   Globe
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
   const [selectedFilter, setSelectedFilter] = useState('Recent');
@@ -165,10 +166,10 @@ const Sidebar = () => {
             Quick Actions
           </h3>
           <div className="space-y-3">
-            <button className="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-purple-500/10 to-blue-500/10 hover:from-purple-500/20 hover:to-blue-500/20 rounded-lg text-sm text-gray-300 hover:text-white transition-all duration-300 border border-purple-500/20 hover:border-purple-500/40">
+            <Link to={"/my-questions"} className="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-purple-500/10 to-blue-500/10 hover:from-purple-500/20 hover:to-blue-500/20 rounded-lg text-sm text-gray-300 hover:text-white transition-all duration-300 border border-purple-500/20 hover:border-purple-500/40">
               <MessageCircle className="w-4 h-4" />
               My Questions
-            </button>
+            </Link>
             <button className="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-green-500/10 to-emerald-500/10 hover:from-green-500/20 hover:to-emerald-500/20 rounded-lg text-sm text-gray-300 hover:text-white transition-all duration-300 border border-green-500/20 hover:border-green-500/40">
               <Award className="w-4 h-4" />
               My Answers

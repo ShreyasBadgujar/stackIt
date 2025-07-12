@@ -2,14 +2,37 @@ import React from 'react';
 import MainContent from './MainContent';
 import TiptapEditor from './TiptapEditor';
 
+import { useNavigate } from 'react-router-dom';
+import API from '../api';
+
 const AskScreen = ({ formData, handleInputChange }) => {
+  const navigate = useNavigate();
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await API.post('/api/questions', {
+        title: formData.title,
+        description: formData.description,
+        tags: formData.tags.split(',').map(tag => tag.trim()).slice(0, 5), // limit to 5 tags
+      });
+
+      alert('Question posted!');
+      navigate('/browse'); // or wherever you want to go
+    } catch (err) {
+      console.error(err);
+      alert(err.response?.data?.error || 'Failed to post question');
+    }
+  };
+
   return (
     <MainContent>
       <div className="max-w-2xl mx-auto">
         <h1 className="text-2xl font-bold text-white mb-6">Ask a Question</h1>
 
         <div className="bg-gray-800 rounded-lg p-6">
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={onSubmit}>
             {/* Title */}
             <div>
               <label className="block text-white text-sm font-medium mb-2">
@@ -21,6 +44,7 @@ const AskScreen = ({ formData, handleInputChange }) => {
                 onChange={(e) => handleInputChange('title', e.target.value)}
                 className="w-full bg-gray-700 text-white px-4 py-3 rounded-lg outline-none border border-gray-600 focus:border-[#6421FF]"
                 placeholder="What's your programming question? Be specific."
+                required
               />
             </div>
 

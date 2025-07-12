@@ -1,42 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MainContent from './MainContent';
 import QuestionCard from './QuestionCard';
 import { Search, ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import API from '../api';
+
 
 const BrowseScreen = () => {
-  const questions = [
-    {
-      id: 1,
-      title: "How do you join 2 columns in a data set to make a separate column in SQL?",
-      description: "I am looking for a way to create a formula that takes the values from two columns and puts them in a new column.",
-      tags: ['sql', 'database'],
-      votes: 15,
-      answers: 3,
-      author: 'john_doe',
-      time: '2 hours ago'
-    },
-    {
-      id: 2,
-      title: "React useState hook not updating state immediately",
-      description: "I'm having trouble with React state updates. The state doesn't seem to update immediately after calling setState.",
-      tags: ['react', 'javascript'],
-      votes: 23,
-      answers: 7,
-      author: 'react_dev',
-      time: '4 hours ago'
-    },
-    {
-      id: 3,
-      title: "Best practices for CSS Grid vs Flexbox",
-      description: "When should I use CSS Grid over Flexbox? What are the main differences and use cases for each?",
-      tags: ['css', 'grid'],
-      votes: 18,
-      answers: 5,
-      author: 'css_ninja',
-      time: '6 hours ago'
-    }
-  ];
+  const [questions, setQuestions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const res = await API.get('/api/questions');
+        setQuestions(res.data);
+      } catch (err) {
+        console.log("API error:", err)
+        setError(err.response?.data?.error || 'Failed to load questions');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchQuestions();
+  }, []);
 
   return (
     <MainContent>
@@ -66,24 +55,43 @@ const BrowseScreen = () => {
 
       {/* Questions List */}
       <div className="mb-6">
-        <div className="text-gray-300 text-sm mb-4">
-          Showing {questions.length} questions
-        </div>
-        {questions.map(question => (
-          <QuestionCard key={question.id} question={question} />
-        ))}
+        {loading ? (
+          <p className="text-gray-400">Loading questions...</p>
+        ) : error ? (
+          <p className="text-red-500">{error}</p>
+        ) : (
+          <>
+            <div className="text-gray-300 text-sm mb-4">
+              Showing {questions.length} questions
+            </div>
+            {questions.map((question) => (
+              <QuestionCard key={question._id} question={{
+                id: question._id,
+                title: question.title,
+                description: question.description,
+                tags: question.tags,
+                votes: 0, // or pull from backend if available
+                answers: 0, // same here
+                author: question.userId?.username || 'unknown',
+                time: new Date(question.createdAt).toLocaleString(),
+              }} />
+            ))}
+          </>
+        )}
       </div>
 
-      {/* Pagination Controls */}
+      {/* Pagination (optional) */}
       <div className="flex justify-center items-center gap-2 mb-6">
         <button className="px-3 py-2 bg-gray-800 text-gray-300 rounded hover:bg-gray-700 disabled:opacity-50">
           <ChevronLeft size={16} />
         </button>
-        {[1, 2, 3, 4, 5].map(num => (
-          <button 
+        {[1, 2, 3, 4, 5].map((num) => (
+          <button
             key={num}
             className={`px-3 py-2 rounded ${
-              num === 1 ?  'text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              num === 1
+                ? 'text-white'
+                : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
             }`}
           >
             {num}
