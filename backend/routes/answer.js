@@ -3,7 +3,8 @@ import {
   createAnswer,
   getAnswersByQuestionId,
   deleteAnswer,
-  voteAnswer
+  voteAnswer,
+  acceptAnswer
 } from "../controllers/answerController.js";
 
 import authMiddleware from "../middleware/authMiddleware.js";
@@ -20,5 +21,8 @@ answerRouter.get("/:questionId", getAnswersByQuestionId);
 answerRouter.delete("/delete/:id", authMiddleware, deleteAnswer);
 
 answerRouter.patch("/:answerId/vote", authMiddleware, voteAnswer);
+
+answerRouter.patch("/:answerId/accept", authMiddleware, acceptAnswer);
+
 
 export default answerRouter;

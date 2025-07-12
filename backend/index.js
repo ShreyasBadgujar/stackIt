@@ -6,6 +6,7 @@ import userRouter from "./routes/auth.js";
 import adminRouter from "./routes/admin.js";
 import questionRouter from "./routes/questions.js";
 import answerRouter from "./routes/answer.js";
+import notificationRouter from "./routes/notification.js";
 
 // Load env
 dotenv.config();
@@ -22,6 +23,7 @@ app.use("/api/auth", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/questions", questionRouter);
 app.use("/api/answers", answerRouter);
+app.use("/api/notifications", notificationRouter);
 
 
 
