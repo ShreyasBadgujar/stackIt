@@ -65,6 +65,7 @@ import BrowseScreen from './components/BrowseScreen';
 import AskScreen from './components/AskScreen';
 import LoginPage from './components/LoginPage';
 import QuestionDetail from './components/QuestionDetail';
+import AnswersScreen from './components/AnswersScreen'
 
 
 import ProtectedRoute from './components/ProtectedRoute';
@@ -109,9 +110,11 @@ const App = () => {
 
             <Route path="/login" element={<LoginPage />} />
             <Route path="/question/:id" element={<QuestionDetail />} />
-            <Route path="/answers" element={<ProtectedRoute><AnswersScreen /></ProtectedRoute>} />
+            <Route path="/answers/:questionId" element={<ProtectedRoute><AnswersScreen /></ProtectedRoute>} />
+            <Route path="/question/:questionId" element={<AnswersScreen />} />
             <Route path="/my-questions" element={<ProtectedRoute><MyQuestions /></ProtectedRoute>} />
             <Route path="/login" element={<LoginPage/>}/>
+            <Route path="/questions/:id" element={<QuestionDetail />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
