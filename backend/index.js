@@ -5,6 +5,7 @@ import cors from "cors";
 import userRouter from "./routes/auth.js";
 import adminRouter from "./routes/admin.js";
 import questionRouter from "./routes/questions.js";
+import answerRouter from "./routes/answer.js";
 
 // Load env
 dotenv.config();
@@ -20,6 +21,8 @@ app.use(express.json());
 app.use("/api/auth", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/questions", questionRouter);
+app.use("/api/answers", answerRouter);
+
 
 
 
