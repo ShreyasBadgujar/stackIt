@@ -84,7 +84,7 @@ client/
 
 ```bash
 git clone https://github.com/ShreyasBadgujar/stackIt.git
-cd stackIt
+cd backend
 npm install
 cp .env.example .env  # Add your PORT and MongoDB URI
 npm run dev
@@ -93,7 +93,7 @@ npm run dev
 ### 🖥 Frontend Setup
 
 ```bash
-cd client
+cd frontend
 npm install
 npm start
 ```
