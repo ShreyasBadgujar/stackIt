@@ -76,48 +76,7 @@ const Sidebar = () => {
           </div>
         </div>
 
-        {/* Enhanced Filters */}
-        <div className="bg-gradient-to-r from-gray-800/50 to-gray-700/50 backdrop-blur-sm rounded-xl p-5 border border-gray-700/30">
-          <h3 className="text-white text-sm font-semibold mb-4 flex items-center gap-2">
-            <Filter className="w-4 h-4 text-blue-400" />
-            Filter Questions
-          </h3>
-          <div className="space-y-4">
-            {/* Sort Filter */}
-            <div className="relative group">
-              <label className="text-xs text-gray-400 mb-2 block">Sort by</label>
-              <select 
-                value={selectedFilter}
-                onChange={(e) => setSelectedFilter(e.target.value)}
-                className="w-full bg-gray-700/70 backdrop-blur-sm text-white px-4 py-3 pr-10 rounded-lg text-sm border border-gray-600/50 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 appearance-none cursor-pointer hover:bg-gray-600/70"
-              >
-                <option value="Recent">🕐 Recent</option>
-                <option value="Popular">🔥 Popular</option>
-                <option value="Most Answered">💬 Most Answered</option>
-                <option value="Trending">📈 Trending</option>
-              </select>
-              <ChevronDown className="absolute right-3 top-9 w-4 h-4 text-gray-400 pointer-events-none group-hover:text-purple-400 transition-colors" />
-            </div>
-
-            {/* Category Filter */}
-            <div className="relative group">
-              <label className="text-xs text-gray-400 mb-2 block">Category</label>
-              <select 
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full bg-gray-700/70 backdrop-blur-sm text-white px-4 py-3 pr-10 rounded-lg text-sm border border-gray-600/50 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 appearance-none cursor-pointer hover:bg-gray-600/70"
-              >
-                <option value="All Categories">🌐 All Categories</option>
-                <option value="JavaScript">⚡ JavaScript</option>
-                <option value="React">⚛️ React</option>
-                <option value="CSS">🎨 CSS</option>
-                <option value="SQL">🗄️ SQL</option>
-                <option value="Python">🐍 Python</option>
-              </select>
-              <ChevronDown className="absolute right-3 top-9 w-4 h-4 text-gray-400 pointer-events-none group-hover:text-purple-400 transition-colors" />
-            </div>
-          </div>
-        </div>
+       
 
         {/* Popular Tags */}
         <div className="bg-gradient-to-r from-gray-800/50 to-gray-700/50 backdrop-blur-sm rounded-xl p-5 border border-gray-700/30">
