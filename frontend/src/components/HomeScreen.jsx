@@ -205,8 +205,8 @@ const HomeScreen = ({ setCurrentScreen }) => {
                             <span className="text-green-400 font-medium text-sm">{question.upvotes}</span>
                           </button>
                           <button className="flex items-center gap-1 px-2 py-1 rounded hover:bg-gray-600/50 transition-colors duration-200">
-                            <ChevronDownVote className="w-4 h-4 text-red-400 hover:text-red-300" />
-                            <span className="text-red-400 font-medium text-sm">{question.downvotes}</span>
+                            <ChevronDownVote className="w-4 h-4 text-purple-400 hover:purple-400-300" />
+                            <span className="text-purple-400 font-medium text-sm">{question.downvotes}</span>
                           </button>
                         </div>
                         <div className="flex items-center gap-2">

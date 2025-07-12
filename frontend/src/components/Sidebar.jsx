@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
-import { 
-  Filter, 
-  TrendingUp, 
-  Clock, 
-  MessageCircle, 
-  Tag, 
+import {
+  Filter,
+  TrendingUp,
+  Clock,
+  MessageCircle,
+  Tag,
   ChevronDown,
-  Search,
   Star,
   Award,
-  Users,
-  BookOpen,
-  Code,
-  Database,
-  Palette,
-  Globe
+  Users
 } from 'lucide-react';
+
+import {
+  SiJavascript,
+  SiReact,
+  SiCss3,
+  SiHtml5,
+  SiMysql,
+  SiPython
+} from 'react-icons/si';
 
 const Sidebar = () => {
   const [selectedFilter, setSelectedFilter] = useState('Recent');
@@ -23,12 +26,12 @@ const Sidebar = () => {
   const [activeTags, setActiveTags] = useState(new Set());
 
   const popularTags = [
-    { name: 'javascript', count: 1234, icon: Code, color: 'from-yellow-400 to-orange-400' },
-    { name: 'react', count: 956, icon: Globe, color: 'from-blue-400 to-cyan-400' },
-    { name: 'css', count: 789, icon: Palette, color: 'from-purple-400 to-pink-400' },
-    { name: 'html', count: 678, icon: BookOpen, color: 'from-red-400 to-orange-400' },
-    { name: 'sql', count: 543, icon: Database, color: 'from-green-400 to-emerald-400' },
-    { name: 'python', count: 432, icon: Code, color: 'from-blue-500 to-indigo-500' }
+    { name: 'javascript', count: 1234, icon: SiJavascript, color: 'from-yellow-400 to-orange-400' },
+    { name: 'react', count: 956, icon: SiReact, color: 'from-blue-400 to-cyan-400' },
+    { name: 'css', count: 789, icon: SiCss3, color: 'from-purple-400 to-pink-400' },
+    { name: 'html', count: 678, icon: SiHtml5, color: 'from-red-400 to-orange-400' },
+    { name: 'sql', count: 543, icon: SiMysql, color: 'from-green-400 to-emerald-400' },
+    { name: 'python', count: 432, icon: SiPython, color: 'from-blue-500 to-indigo-500' }
   ];
 
   const statsData = [
@@ -63,7 +66,7 @@ const Sidebar = () => {
             Community Stats
           </h3>
           <div className="space-y-3">
-            {statsData.map((stat, index) => (
+            {statsData.map((stat) => (
               <div key={stat.label} className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <stat.icon className={`w-4 h-4 ${stat.color}`} />
@@ -75,20 +78,19 @@ const Sidebar = () => {
           </div>
         </div>
 
-        {/* Enhanced Filters */}
+        {/* Filters */}
         <div className="bg-gradient-to-r from-gray-800/50 to-gray-700/50 backdrop-blur-sm rounded-xl p-5 border border-gray-700/30">
           <h3 className="text-white text-sm font-semibold mb-4 flex items-center gap-2">
             <Filter className="w-4 h-4 text-blue-400" />
             Filter Questions
           </h3>
           <div className="space-y-4">
-            {/* Sort Filter */}
             <div className="relative group">
               <label className="text-xs text-gray-400 mb-2 block">Sort by</label>
-              <select 
+              <select
                 value={selectedFilter}
                 onChange={(e) => setSelectedFilter(e.target.value)}
-                className="w-full bg-gray-700/70 backdrop-blur-sm text-white px-4 py-3 pr-10 rounded-lg text-sm border border-gray-600/50 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 appearance-none cursor-pointer hover:bg-gray-600/70"
+                className="w-full bg-gray-700/70 text-white px-4 py-3 pr-10 rounded-lg text-sm border border-gray-600/50 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 appearance-none cursor-pointer hover:bg-gray-600/70"
               >
                 <option value="Recent">🕐 Recent</option>
                 <option value="Popular">🔥 Popular</option>
@@ -98,13 +100,12 @@ const Sidebar = () => {
               <ChevronDown className="absolute right-3 top-9 w-4 h-4 text-gray-400 pointer-events-none group-hover:text-purple-400 transition-colors" />
             </div>
 
-            {/* Category Filter */}
             <div className="relative group">
               <label className="text-xs text-gray-400 mb-2 block">Category</label>
-              <select 
+              <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full bg-gray-700/70 backdrop-blur-sm text-white px-4 py-3 pr-10 rounded-lg text-sm border border-gray-600/50 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 appearance-none cursor-pointer hover:bg-gray-600/70"
+                className="w-full bg-gray-700/70 text-white px-4 py-3 pr-10 rounded-lg text-sm border border-gray-600/50 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all duration-300 appearance-none cursor-pointer hover:bg-gray-600/70"
               >
                 <option value="All Categories">🌐 All Categories</option>
                 <option value="JavaScript">⚡ JavaScript</option>
@@ -128,24 +129,22 @@ const Sidebar = () => {
             {popularTags.map((tag, index) => {
               const isActive = activeTags.has(tag.name);
               const IconComponent = tag.icon;
-              
               return (
                 <button
                   key={tag.name}
                   onClick={() => handleTagClick(tag.name)}
                   className={`w-full flex items-center justify-between p-3 rounded-lg text-sm transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 group ${
-                    isActive 
-                      ? 'bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-500/30 text-white' 
+                    isActive
+                      ? 'bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-500/30 text-white'
                       : 'bg-gray-700/40 hover:bg-gray-600/60 border border-gray-600/30 text-gray-300 hover:text-white'
                   }`}
-                  style={{ animationDelay: `${index * 50}ms` }}
                 >
                   <div className="flex items-center gap-3">
                     <div className={`w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-r ${tag.color} ${isActive ? 'opacity-100' : 'opacity-70 group-hover:opacity-100'} transition-opacity`}>
                       <IconComponent className="w-4 h-4 text-white" />
                     </div>
                     <div className="text-left">
-                      <div className="font-medium">{tag.name}</div>
+                      <div className="font-medium capitalize">{tag.name}</div>
                       <div className="text-xs text-gray-400">{tag.count.toLocaleString()} questions</div>
                     </div>
                   </div>
@@ -158,29 +157,7 @@ const Sidebar = () => {
           </div>
         </div>
 
-        {/* Quick Actions */}
-        <div className="bg-gradient-to-r from-gray-800/50 to-gray-700/50 backdrop-blur-sm rounded-xl p-5 border border-gray-700/30">
-          <h3 className="text-white text-sm font-semibold mb-4 flex items-center gap-2">
-            <Star className="w-4 h-4 text-yellow-400" />
-            Quick Actions
-          </h3>
-          <div className="space-y-3">
-            <button className="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-purple-500/10 to-blue-500/10 hover:from-purple-500/20 hover:to-blue-500/20 rounded-lg text-sm text-gray-300 hover:text-white transition-all duration-300 border border-purple-500/20 hover:border-purple-500/40">
-              <MessageCircle className="w-4 h-4" />
-              My Questions
-            </button>
-            <button className="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-green-500/10 to-emerald-500/10 hover:from-green-500/20 hover:to-emerald-500/20 rounded-lg text-sm text-gray-300 hover:text-white transition-all duration-300 border border-green-500/20 hover:border-green-500/40">
-              <Award className="w-4 h-4" />
-              My Answers
-            </button>
-            <button className="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 hover:from-yellow-500/20 hover:to-orange-500/20 rounded-lg text-sm text-gray-300 hover:text-white transition-all duration-300 border border-yellow-500/20 hover:border-yellow-500/40">
-              <Star className="w-4 h-4" />
-              Bookmarks
-            </button>
-          </div>
-        </div>
-
-        {/* Bottom Padding for Scroll */}
+        {/* Bottom Padding */}
         <div className="h-20"></div>
       </div>
     </aside>
