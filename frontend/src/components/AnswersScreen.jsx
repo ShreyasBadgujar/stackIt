@@ -8,7 +8,7 @@ const AnswersScreen = () => (
     <div className="mb-6">
       <Link 
         to="/browse"
-        className="text-[#6421FF] hover:text-[#541ACC] flex items-center gap-2 mb-4"
+        className="text-blue-400 hover:text-blue-300 flex items-center gap-2 mb-4"
       >
         <ChevronLeft size={16} />
         Back to Questions
@@ -24,8 +24,8 @@ const AnswersScreen = () => (
         </p>
         <div className="flex items-center justify-between">
           <div className="flex gap-2">
-            <span className="bg-[#6421FF] text-white px-2 py-1 rounded text-xs">sql</span>
-            <span className="bg-[#6421FF] text-white px-2 py-1 rounded text-xs">database</span>
+            <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs">sql</span>
+            <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs">database</span>
           </div>
           <div className="text-sm text-gray-400">
             Asked by john_doe • 2 hours ago
@@ -89,12 +89,12 @@ const AnswersScreen = () => (
     <div className="bg-gray-800 rounded-lg p-6">
       <h3 className="text-lg font-semibold text-white mb-4">Your Answer</h3>
       <textarea
-        className="w-full bg-gray-700 text-white px-4 py-3 rounded-lg outline-none border border-gray-600 focus:border-[#6421FF] resize-none"
+        className="w-full bg-gray-700 text-white px-4 py-3 rounded-lg outline-none border border-gray-600 focus:border-blue-500 resize-none"
         rows="6"
         placeholder="Write your answer here..."
       />
       <div className="mt-4">
-        <button className="bg-[#6421FF] hover:bg-[#541ACC] text-white px-6 py-3 rounded-lg transition-colors font-medium">
+        <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors font-medium">
           Post Answer
         </button>
       </div>
