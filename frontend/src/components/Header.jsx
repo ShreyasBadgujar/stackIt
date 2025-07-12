@@ -50,7 +50,13 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => (
             />
           </div>
           <Bell size={20} className="text-gray-400 hover:text-white cursor-pointer" />
-          <User size={20} className="text-gray-400 hover:text-white cursor-pointer" />
+          <Link
+            to="/login"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
+          >
+            <Plus size={16} />
+            Login 
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -89,6 +95,7 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => (
             <Plus size={16} />
             Ask Question
           </Link>
+          
         </div>
       </div>
     )}
