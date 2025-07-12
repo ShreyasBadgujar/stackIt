@@ -1,24 +1,36 @@
 import Answer from "../models/answer.js";
 import Question from "../models/questions.js";
+import Notification from "../models/notification.js";
 
 export const createAnswer = async (req, res) => {
   try {
-    const { content } = req.body;
+    const { description } = req.body;
     const { questionId } = req.params;
+    const userId = req.userId;
 
-    // Check if question exists
     const question = await Question.findById(questionId);
     if (!question) return res.status(404).json({ error: "Question not found" });
 
     const newAnswer = new Answer({
-      content,
       questionId,
-      userId: req.userId,
+      userId,
+      description
     });
 
     await newAnswer.save();
+
+    if (question.userId.toString() !== userId) {
+      await Notification.create({
+        recipient: question.userId,
+        type: "answer",
+        message: `Someone answered your question: ${question.title}`,
+        link: `/questions/${question._id}`,
+      });
+    }
+
     res.status(201).json(newAnswer);
   } catch (err) {
+    console.error("Error posting answer:", err.message);
     res.status(500).json({ error: "Failed to post answer" });
   }
 };
@@ -51,49 +63,61 @@ export const deleteAnswer = async (req, res) => {
   }
 };
 
-
 export const voteAnswer = async (req, res) => {
   try {
     const { voteType } = req.body;
     const userId = req.userId;
     const answerId = req.params.answerId;
 
-    // ✅ Fetch the answer
     const answer = await Answer.findById(answerId);
-    if (!answer) {
-      console.log("Answer not found");
-      return res.status(404).json({ error: "Answer not found" });
-    }
+    if (!answer) return res.status(404).json({ error: "Answer not found" });
 
-    // ✅ Fix: Use .toString() when comparing ObjectId and string
     const hasVoted = answer.voters.some(
       (voterId) => voterId.toString() === userId
     );
-
-    if (hasVoted) {
-      console.log("Already voted");
+    if (hasVoted)
       return res.status(400).json({ error: "You already voted" });
-    }
 
-    // ✅ Process vote
     if (voteType === "up") {
       answer.votes += 1;
     } else if (voteType === "down") {
       answer.votes -= 1;
     } else {
-      console.log("Invalid voteType:", req.body.voteType);
       return res.status(400).json({ error: "Invalid vote type" });
     }
 
     answer.voters.push(userId);
     await answer.save();
 
-    return res.status(200).json({
-      message: "Vote recorded",
-      votes: answer.votes,
-    });
+    res.status(200).json({ message: "Vote recorded", votes: answer.votes });
   } catch (err) {
     console.error("Error while voting:", err.message);
-    return res.status(500).json({ error: "Vote failed due to server error" });
+    res.status(500).json({ error: "Vote failed due to server error" });
+  }
+};
+
+export const acceptAnswer = async (req, res) => {
+  try {
+    const answer = await Answer.findById(req.params.answerId);
+    if (!answer) return res.status(404).json({ error: "Answer not found" });
+
+    const question = await Question.findById(answer.questionId);
+    if (!question) return res.status(404).json({ error: "Question not found" });
+
+    if (question.userId.toString() !== req.userId)
+      return res.status(403).json({ error: "Only question owner can accept answers" });
+
+    await Answer.updateMany(
+      { questionId: question._id },
+      { $set: { accepted: false } }
+    );
+
+    answer.accepted = true;
+    await answer.save();
+
+    res.json({ message: "Answer marked as accepted", answerId: answer._id });
+  } catch (err) {
+    console.error("Accept answer error:", err);
+    res.status(500).json({ error: "Could not accept answer" });
   }
 };
