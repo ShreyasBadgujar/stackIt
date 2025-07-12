@@ -6,6 +6,13 @@ export default function authMiddleware(req, res, next) {
 
   try {
     const decoded = jwt.verify(token.split(" ")[1], process.env.JWT_SECRET);
+
+
+     // 🚫 Block banned users
+    if (decoded.role === "banned") {
+      return res.status(403).json({ error: "Banned user" });
+    }
+
     req.userId = decoded.userId;
     req.role = decoded.role;
     next();
