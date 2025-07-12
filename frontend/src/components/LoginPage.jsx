@@ -14,7 +14,7 @@ const Login = () => {
   }         
 
   return (
-    <from className='min-h-[80vh] flex items-center  ml-[500px]'>
+    <from className='min-h-[80vh] flex items-center m-auto '>
       <div className='flex flex-col gap-3 m-auto bg-gray-900 iteam-start p-8 min-w-[340px] sm:min-w-96 border rounded-xl bg-black-300 text-white text-sm shadow-lg'>
         <p className='text-2xl font-semibold'>{state==='Sign Up'? "Create Account":"Login"}</p>
         <p>Please {state==='Sign Up'? "sign up":"log in"} to StackIt</p>
@@ -28,11 +28,11 @@ const Login = () => {
         
        <div className='w-full'>
           <p>Email</p>
-          <input className='border border-zinc-300 rounded w-full p-2 mt-1' type="email" onChange={(e)=>setEmail(e.target.value)} value={email} />
+          <input className='border border-zinc-300 bg-gray-700 rounded w-full p-2 mt-1' type="email" onChange={(e)=>setEmail(e.target.value)} value={email} />
         </div>
         <div className='w-full'>
           <p>Password</p>
-          <input className='border border-zinc-300 rounded w-full p-2 mt-1' type="password" onChange={(e)=>setPassword(e.target.value)} value={passwword} />
+          <input className='border border-zinc-300 bg-gray-700 rounded w-full p-2 mt-1' type="password" onChange={(e)=>setPassword(e.target.value)} value={passwword} />
         </div>
         <button className='bg-primary text-white w-full py-3 rounded-md text-base'>{state==='Sign Up'? "Create Account":"Login"}</button>
         {
