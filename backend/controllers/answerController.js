@@ -50,3 +50,50 @@ export const deleteAnswer = async (req, res) => {
     res.status(500).json({ error: "Delete failed" });
   }
 };
+
+
+export const voteAnswer = async (req, res) => {
+  try {
+    const { voteType } = req.body;
+    const userId = req.userId;
+    const answerId = req.params.answerId;
+
+    // ✅ Fetch the answer
+    const answer = await Answer.findById(answerId);
+    if (!answer) {
+      console.log("Answer not found");
+      return res.status(404).json({ error: "Answer not found" });
+    }
+
+    // ✅ Fix: Use .toString() when comparing ObjectId and string
+    const hasVoted = answer.voters.some(
+      (voterId) => voterId.toString() === userId
+    );
+
+    if (hasVoted) {
+      console.log("Already voted");
+      return res.status(400).json({ error: "You already voted" });
+    }
+
+    // ✅ Process vote
+    if (voteType === "up") {
+      answer.votes += 1;
+    } else if (voteType === "down") {
+      answer.votes -= 1;
+    } else {
+      console.log("Invalid voteType:", req.body.voteType);
+      return res.status(400).json({ error: "Invalid vote type" });
+    }
+
+    answer.voters.push(userId);
+    await answer.save();
+
+    return res.status(200).json({
+      message: "Vote recorded",
+      votes: answer.votes,
+    });
+  } catch (err) {
+    console.error("Error while voting:", err.message);
+    return res.status(500).json({ error: "Vote failed due to server error" });
+  }
+};

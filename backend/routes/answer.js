@@ -2,7 +2,8 @@ import express from "express";
 import {
   createAnswer,
   getAnswersByQuestionId,
-  deleteAnswer
+  deleteAnswer,
+  voteAnswer
 } from "../controllers/answerController.js";
 
 import authMiddleware from "../middleware/authMiddleware.js";
@@ -17,5 +18,7 @@ answerRouter.get("/:questionId", getAnswersByQuestionId);
 
 // DELETE /api/answers/delete/:id
 answerRouter.delete("/delete/:id", authMiddleware, deleteAnswer);
+
+answerRouter.patch("/:answerId/vote", authMiddleware, voteAnswer);
 
 export default answerRouter;
