@@ -1,9 +1,32 @@
-import express from 'express'
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import cors from "cors";
+import userRouter from "./routes/auth.js";
+import adminRoute from "./routes/admin.js";
 
-const app = express()
+// Load env
+dotenv.config();
 
-app.get('/', (req, res) => {
-  res.send('Hello World')
-})
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-app.listen(3000)
+// Routes
+
+
+
+app.use("/api/auth", userRouter);
+app.use("/api/admin", adminRoute);
+
+
+
+// DB Connect
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch(err => console.error("❌ Mongo Error:", err));
+
+// Start server
+app.listen(process.env.PORT, () => {
+  console.log(`✅ Server running on port ${process.env.PORT}`);
+});
