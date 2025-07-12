@@ -54,7 +54,6 @@ const Header = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => (
             to="/login"
             className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
           >
-            <Plus size={16} />
             Login 
           </Link>
         </div>
