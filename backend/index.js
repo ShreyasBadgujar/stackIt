@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import userRouter from "./routes/auth.js";
-import adminRoute from "./routes/admin.js";
+import adminRouter from "./routes/admin.js";
+import questionRouter from "./routes/questions.js";
 
 // Load env
 dotenv.config();
@@ -17,7 +18,8 @@ app.use(express.json());
 
 
 app.use("/api/auth", userRouter);
-app.use("/api/admin", adminRoute);
+app.use("/api/admin", adminRouter);
+app.use("/api/questions", questionRouter);
 
 
 
