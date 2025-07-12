@@ -37,6 +37,20 @@ export const getQuestionById = async (req, res) => {
   }
 };
 
+
+export const myQuestions = async(req,res) => {
+
+  
+  try {
+    const questions = await Question.find({ userId: req.userId }).sort({ createdAt: -1 }).populate("userId", "username");
+    res.json(questions);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch your questions" });
+  }
+
+
+}
+
 export const deleteQuestion = async (req, res) => {
   try {
     const question = await Question.findById(req.params.id);
