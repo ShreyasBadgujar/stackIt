@@ -6,7 +6,7 @@ import HomeScreen from './components/HomeScreen';
 import BrowseScreen from './components/BrowseScreen';
 import AskScreen from './components/AskScreen';
 import AnswersScreen from './components/AnswersScreen';
-
+import LoginPage from './components/LoginPage';
 const App = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -25,14 +25,26 @@ const App = () => {
   return (
     <Router>
       <div className="min-h-screen bg-gray-950">
-        <Header isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
+        <Header
+          isMobileMenuOpen={isMobileMenuOpen}
+          setIsMobileMenuOpen={setIsMobileMenuOpen}
+        />
         <div className="flex">
           <Sidebar />
           <Routes>
             <Route path="/" element={<HomeScreen />} />
             <Route path="/browse" element={<BrowseScreen />} />
-            <Route path="/ask" element={<AskScreen formData={formData} handleInputChange={handleInputChange} />} />
+            <Route
+              path="/ask"
+              element={
+                <AskScreen
+                  formData={formData}
+                  handleInputChange={handleInputChange}
+                />
+              }
+            />
             <Route path="/answers" element={<AnswersScreen />} />
+            <Route path="/login" element={<LoginPage/>}/>
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>

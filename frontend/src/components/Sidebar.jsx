@@ -20,11 +20,15 @@ const Sidebar = () => (
           </select>
         </div>
       </div>
+
       <div>
         <h3 className="text-white text-sm font-semibold mb-3">Popular Tags</h3>
         <div className="flex flex-wrap gap-2">
           {['javascript', 'react', 'css', 'html', 'sql', 'python'].map(tag => (
-            <span key={tag} className="bg-gray-800 text-gray-300 px-2 py-1 rounded text-xs hover:bg-gray-700 cursor-pointer">
+            <span
+              key={tag}
+              className="bg-gray-800 text-gray-300 px-2 py-1 rounded text-xs hover:bg-gray-700 cursor-pointer"
+            >
               {tag}
             </span>
           ))}

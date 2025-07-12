@@ -2,8 +2,9 @@ import React from 'react';
 import MainContent from './MainContent';
 import QuestionCard from './QuestionCard';
 import { Search, ChevronLeft, ChevronRight, Plus } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-const BrowseScreen = ({ setCurrentScreen }) => {
+const BrowseScreen = () => {
   const questions = [
     {
       id: 1,
@@ -41,13 +42,13 @@ const BrowseScreen = ({ setCurrentScreen }) => {
     <MainContent>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-white">All Questions</h1>
-        <button 
-          onClick={() => setCurrentScreen('ask')}
+        <Link 
+          to="/ask"
           className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
         >
           <Plus size={16} />
           Ask Question
-        </button>
+        </Link>
       </div>
 
       <div className="md:hidden mb-6">
