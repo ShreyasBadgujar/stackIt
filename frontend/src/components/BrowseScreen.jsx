@@ -40,17 +40,19 @@ const BrowseScreen = () => {
 
   return (
     <MainContent>
+      {/* Header and Ask Question Button */}
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-white">All Questions</h1>
         <Link 
           to="/ask"
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
+          className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
         >
           <Plus size={16} />
           Ask Question
         </Link>
       </div>
 
+      {/* Mobile Search Input */}
       <div className="md:hidden mb-6">
         <div className="relative">
           <Search size={20} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -62,6 +64,7 @@ const BrowseScreen = () => {
         </div>
       </div>
 
+      {/* Questions List */}
       <div className="mb-6">
         <div className="text-gray-300 text-sm mb-4">
           Showing {questions.length} questions
@@ -71,6 +74,7 @@ const BrowseScreen = () => {
         ))}
       </div>
 
+      {/* Pagination Controls */}
       <div className="flex justify-center items-center gap-2 mb-6">
         <button className="px-3 py-2 bg-gray-800 text-gray-300 rounded hover:bg-gray-700 disabled:opacity-50">
           <ChevronLeft size={16} />
@@ -79,7 +83,7 @@ const BrowseScreen = () => {
           <button 
             key={num}
             className={`px-3 py-2 rounded ${
-              num === 1 ? 'bg-blue-600 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              num === 1 ?  'text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
             }`}
           >
             {num}
