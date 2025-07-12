@@ -7,9 +7,9 @@ import { getMe, login, register } from "../controllers/authController.js";
 
 const userRouter = express.Router();
 
-router.post("/register", register);
-router.post("/login", login);
-router.get("/me", authMiddleware, getMe);
+userRouter.post("/register", register);
+userRouter.post("/login", login);
+userRouter.get("/me", authMiddleware, getMe);
 
 export default userRouter;
 

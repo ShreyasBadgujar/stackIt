@@ -8,12 +8,12 @@ import {
   deleteAnswerByAdmin
 } from "../controllers/adminController.js";
 
-const adminRoute = express.Router();
+const adminRouter = express.Router();
 
-router.get("/users", authMiddleware, isAdmin, getAllUsers);
-router.patch("/users/:id/ban", authMiddleware, isAdmin, banUser);
+adminRouter.get("/users", authMiddleware, isAdmin, getAllUsers);
+adminRouter.patch("/users/:id/ban", authMiddleware, isAdmin, banUser);
 
-router.delete("/questions/:id", authMiddleware, isAdmin, deleteQuestionByAdmin);
-router.delete("/answers/:id", authMiddleware, isAdmin, deleteAnswerByAdmin);
+adminRouter.delete("/questions/:id", authMiddleware, isAdmin, deleteQuestionByAdmin);
+adminRouter.delete("/answers/:id", authMiddleware, isAdmin, deleteAnswerByAdmin);
 
-export default adminRoute;
+export default adminRouter;
