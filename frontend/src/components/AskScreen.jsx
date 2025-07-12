@@ -1,7 +1,7 @@
 import React from 'react';
 import MainContent from './MainContent';
 
-const AskScreen = ({ formData, handleInputChange, setCurrentScreen }) => (
+const AskScreen = ({ formData, handleInputChange }) => (
   <MainContent>
     <div className="max-w-2xl mx-auto">
       <h1 className="text-2xl font-bold text-white mb-6">Ask a Question</h1>
@@ -62,15 +62,13 @@ const AskScreen = ({ formData, handleInputChange, setCurrentScreen }) => (
 
           <div className="flex flex-col sm:flex-row gap-3">
             <button 
-              type="button"
-              onClick={() => setCurrentScreen('browse')}
+              type="submit"
               className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg transition-colors font-medium"
             >
               Post Question
             </button>
             <button 
               type="button"
-              onClick={() => setCurrentScreen('browse')}
               className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-3 px-6 rounded-lg transition-colors font-medium"
             >
               Save Draft

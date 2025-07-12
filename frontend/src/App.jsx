@@ -25,13 +25,24 @@ const App = () => {
   return (
     <Router>
       <div className="min-h-screen bg-gray-950">
-        <Header isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
+        <Header
+          isMobileMenuOpen={isMobileMenuOpen}
+          setIsMobileMenuOpen={setIsMobileMenuOpen}
+        />
         <div className="flex">
           <Sidebar />
           <Routes>
             <Route path="/" element={<HomeScreen />} />
             <Route path="/browse" element={<BrowseScreen />} />
-            <Route path="/ask" element={<AskScreen formData={formData} handleInputChange={handleInputChange} />} />
+            <Route
+              path="/ask"
+              element={
+                <AskScreen
+                  formData={formData}
+                  handleInputChange={handleInputChange}
+                />
+              }
+            />
             <Route path="/answers" element={<AnswersScreen />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

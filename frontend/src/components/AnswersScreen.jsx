@@ -1,17 +1,18 @@
 import React from 'react';
 import MainContent from './MainContent';
 import { ChevronLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-const AnswersScreen = ({ setCurrentScreen }) => (
+const AnswersScreen = () => (
   <MainContent>
     <div className="mb-6">
-      <button 
-        onClick={() => setCurrentScreen('browse')}
+      <Link 
+        to="/browse"
         className="text-blue-400 hover:text-blue-300 flex items-center gap-2 mb-4"
       >
         <ChevronLeft size={16} />
         Back to Questions
-      </button>
+      </Link>
 
       <div className="bg-gray-800 rounded-lg p-6 mb-6">
         <h1 className="text-2xl font-bold text-white mb-4">
@@ -32,7 +33,7 @@ const AnswersScreen = ({ setCurrentScreen }) => (
         </div>
       </div>
     </div>
-
+    
     <div className="mb-8">
       <h2 className="text-xl font-semibold text-white mb-4">3 Answers</h2>
 
